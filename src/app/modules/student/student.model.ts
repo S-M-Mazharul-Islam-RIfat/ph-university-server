@@ -83,7 +83,7 @@ const studentSchema = new Schema<TStudent>({
       enum: ['male', 'female', 'other'],
       required: [true, 'Gender is required.'],
    },
-   dateOfBirth: { type: String },
+   dateOfBirth: String,
    email: {
       type: String,
       required: [true, 'Email is required.'],
@@ -96,7 +96,7 @@ const studentSchema = new Schema<TStudent>({
       type: String,
       required: [true, 'Emergency contact number is required.'],
    },
-   bloogGroup: {
+   bloodGroup: {
       type: String,
       enum: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
    },
@@ -104,7 +104,7 @@ const studentSchema = new Schema<TStudent>({
       type: String,
       required: [true, 'Present address is required.'],
    },
-   permanentAddres: {
+   permanentAddress: {
       type: String,
       required: [true, 'Permanent address is required.'],
    },
@@ -117,6 +117,18 @@ const studentSchema = new Schema<TStudent>({
       required: [true, 'Local guardian information is required.'],
    },
    profileImg: { type: String },
+   admissionSemester: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicSemester'
+   },
+   academicDepartment: {
+      type: Schema.Types.ObjectId,
+      ref: 'AcademicDepartment'
+   },
+   isDeleted: {
+      type: Boolean,
+      default: false,
+   },
 });
 
 export const StudentModel = model<TStudent>('Student', studentSchema);
