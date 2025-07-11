@@ -17,6 +17,7 @@ const getSingleFaculty = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllFaculties = catchAsync(async (req: Request, res: Response) => {
+   console.log(req.user);
    const result = await FacultyServices.getAllFacultiesFromDB(req.query);
 
    sendResponse(res, {
